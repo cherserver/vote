@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<mgrdata>
+  <mainmenu level="admin+">
+    <node name="stat" first="yes">
+      <node name="vote" first="yes"/>
+    </node>
+    <node name="srvset" after="stat">
+      <node name="user" first="yes"/>
+    </node>
+  </mainmenu>
+  <mainmenu level="user">
+    <node name="stat" first="yes">
+	  <node name="vote" first="yes"/>
+	</node>
+  </mainmenu>
+  <lang name="ru">
+    <messages name="desktop">
+	  <msg name="menu_user">Пользователи</msg>
+      <msg name="menu_vote">Голосование</msg>
+	</messages>
+  </lang>
+</mgrdata>

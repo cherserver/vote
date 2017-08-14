@@ -1,0 +1,176 @@
+<?xml version="1.0"?>
+<mgrdata>
+  <metadata name="vote" type="list" key="id" keyname="name">
+    <toolbar>
+      <toolbtn name="new" func="vote.edit" type="new" img="t-new"/>
+      <toolbtn name="edit" func="vote.edit" type="edit" img="t-edit" default="yes">
+        <hide name="can_edit" value="off"/>
+      </toolbtn>
+      <toolbtn name="delete" func="vote.delete" type="group" img="t-delete">
+        <hide name="can_delete" value="off"/>
+      </toolbtn>
+      <toolsep/>
+      <toolbtn name="up" func="vote.up" type="group" img="t-moveup"/>
+      <toolbtn name="down" func="vote.down" type="group" img="t-movedown"/>
+      <toolsep/>
+      <toolbtn name="be_lector" func="vote.be_lector" type="group" img="t-start">
+        <hide name="melector" value="on"/>
+      </toolbtn>
+      <toolbtn name="not_be_lector" func="vote.not_be_lector" type="group" img="t-stop">
+        <hide name="melector" value="off"/>
+      </toolbtn>
+      <toolsep/>
+      <toolbtn name="set_date" func="vote.set_date" type="edit" img="t-period">
+        <hide name="melector" value="off"/>
+      </toolbtn>
+    </toolbar>
+    <coldata>
+      <col type="data" name="name" sort="alpha" wrap="yes" sorted="+3">
+        <prop name="newvote" img="p-info"/>
+        <xprop name="level" value="novice" img="p-user"/>
+        <xprop name="level" value="standard" img="p-ninjaoff"/>
+        <xprop name="level" value="pro" img="p-ninjaon"/>
+        <setcolor color="green" name="myvote" value="on"/>
+        <setcolor color="red" name="myvote" value="off"/>
+      </col>
+      <col type="data" name="descr" sort="alpha" wrap="yes"/>
+      <col type="data" name="author" sort="alpha"/>
+      <col type="data" name="mark" sort="digit" sorted="-2">
+        <setcolor color="red" name="bad" value="on"/>
+        <xprop name="myvote" value="off" img="p-like" func="vote.up"/>
+        <xprop name="myvote" value="on" img="p-dislike" func="vote.down"/>
+        <xprop name="votefor" value="on" img="p-like" func="vote.up"/>
+        <xprop name="voteagainst" value="on" img="p-dislike" func="vote.down"/>
+      </col>
+      <col type="data" name="pro" sort="digit">
+        <prop name="pro" img="p-like" activehint="yes"/>
+      </col>
+      <col type="data" name="con" sort="digit">
+        <prop name="con" img="p-dislike" activehint="yes"/>
+      </col>
+      <col name="status" sort="prop">
+        <xprop name="has_lector" value="on" img="p-lt3"/>
+        <xprop name="has_lector" value="off" img="p-tick-grey"/>
+        <xprop name="melector" value="off" img="p-love1" func="vote.be_lector"/>
+        <xprop name="melector" value="on" img="p-love2" func="vote.not_be_lector"/>
+      </col>
+      <col type="data" name="repdate" sort="alpha" sorted="-1" wrap="on"/>
+    </coldata>
+  </metadata>
+  <metadata name="vote.edit" type="form">
+    <form>
+      <field name="name">
+        <input type="text" name="name" required="yes"/>
+      </field>
+      <field name="level">
+        <select name="level" plainhint="yes"/>
+      </field>
+      <field name="descr" fullwidth="yes">
+        <textarea name="descr" rows="5"/>
+      </field>
+      <field name="author" remove_if="new">
+        <select name="author" readonly="yes"/>
+      </field>
+      <field name="lectors" fullwidth="yes" remove_if="new">
+        <textdata name="lectors" type="data"/>
+      </field>
+      <field name="pros" fullwidth="yes" remove_if="new">
+        <textdata name="pros" type="data"/>
+      </field>
+      <field name="cons" fullwidth="yes" remove_if="new">
+        <textdata name="cons" type="data"/>
+      </field>
+    </form>
+  </metadata>
+  <metadata name="vote.set_date" type="form">
+    <form>
+      <field name="descrd" fullwidth="yes">
+        <textdata name="descr" type="msg"/>
+      </field>
+      <field name="current_lector">
+        <input type="text" name="current_lector" readonly="yes"/>
+      </field>
+      <field name="date">
+        <input type="text" name="date" date="yes" required="yes"/>
+      </field>
+      <field name="time">
+        <!-- <input type="text" name="hour" check="int" checkargs="9,17" required="yes"/> -->
+        <select name="hour"/>
+        <select name="minute"/>
+      </field>
+    </form>
+  </metadata>
+  <lang name="ru">
+    <messages name="vote">
+      <msg name="title">Темы для презентаций</msg>
+      <msg name="name">Тема</msg>
+      <msg name="hint_name">Зеленым выделены темы, которые вам нравятся. Красным те, которые не нравятся</msg>
+      <msg name="descr">Описание</msg>
+      <msg name="author">Добавил</msg>
+      <msg name="pro">За</msg>
+      <msg name="con">Против</msg>
+      <msg name="mark">Оценка</msg>
+      <msg name="repdate">Дата (план)</msg>
+      <msg name="status">Статус</msg>
+      <msg name="hint_edit">Редактировать тему может только автор или администратор</msg>
+      <msg name="hint_delete">Удалять темы могут только авторы или администраторы</msg>
+      <msg name="short_up">Нравится</msg>
+      <msg name="short_down">Не нравится</msg>
+      <msg name="short_be_lector">Могу подготовить</msg>
+      <msg name="short_not_be_lector">Передумал готовить</msg>
+      <msg name="short_set_date">Выбрать время</msg>
+      <msg name="hint_p_newvote">Новая тема. Отметьте ее как понравившуюся. Или нет</msg>
+      <msg name="hint_p_myvote_on">Вам нравится эта тема. Нажмите на картинку, если тема вам все же не нравится</msg>
+      <msg name="hint_p_myvote_off">Вам не нравится эта тема. Нажмите на картинку, если тема вам все же нравится</msg>
+      <msg name="hint_p_votefor_on">Вы еще не голосовали. Нажмите, если вам нравится тема</msg>
+      <msg name="hint_p_voteagainst_on">Вы еще не голосовали. Нажмите, если вам не нравится тема</msg>
+      <msg name="hint_p_has_lector_on">Есть люди, готовые подготовить эту тему</msg>
+      <msg name="hint_p_has_lector_off">Еще нет людей, готовых подготовить эту тему</msg>
+      <msg name="hint_p_melector_on">Вы можете подготовить эту тему. Нажмите, если больше не можете</msg>
+      <msg name="hint_p_melector_off">Вы не согласны подготовить эту тему. Нажмите, если у вас есть возможность или желание подготовить</msg>
+      <msg name="msg_confirm_delete">Вы действительно желаете удалить тему:</msg>
+      <msg name="msg_confirm_up">Вы действительно желаете проголосовать за:</msg>
+      <msg name="msg_confirm_down">Вы действительно желаете проголосовать против:</msg>
+      <msg name="msg_confirm_be_lector">Вы действительно желаете подготовить:</msg>
+      <msg name="msg_confirm_not_be_lector">Вы действительно передумали готовить:</msg>
+      <msg name="hint_p_level_novice">Уровень: новичок. Хотя, более опытным разработчикам иногда тоже неплохо освежить свои знания</msg>
+      <msg name="hint_p_level_standard">Уровень: стандартный. Подойдет для большинства разработчиков независмо от уровня прокачанности</msg>
+      <msg name="hint_p_level_pro">Уровень: продвинутый. Подойдет для подготовленных разработчиков</msg>
+      <msg name="hint_p_pro">Кому нравится: __value__</msg>
+      <msg name="hint_p_con">Кому не нравится: __value__</msg>
+    </messages>
+    <messages name="vote.edit">
+      <msg name="title">Редактирование темы</msg>
+      <msg name="title_new">Создание новой темы</msg>
+      <msg name="hint_name">Тема</msg>
+      <msg name="level">Уровень</msg>
+      <msg name="level_novice">Новичок</msg>
+      <msg name="level_standard">Стандартный</msg>
+      <msg name="level_pro">Продвинутый</msg>
+      <msg name="hint_level__novice">Подойдет для новичков. Хотя, более опытным разработчикам иногда тоже неплохо освежить свои знания</msg>
+      <msg name="hint_level__standard">Подойдет для большинства разработчиков независмо от уровня прокачанности</msg>
+      <msg name="hint_level__pro">Подойдет для подготовленных разработчиков</msg>
+      <msg name="lectors">Готовы подготовить презентацию:</msg>
+      <msg name="pros">Кому нравится:</msg>
+      <msg name="cons">Кому не нравится:</msg>
+      <include name="vote"/>
+    </messages>
+    <messages name="vote.set_date">
+      <msg name="title">Выбор даты</msg>
+      <msg name="descr">Подтверждая данные формы, вы становитесь ответственным за подготовку темы к указанному времени. Тему готовить будете тоже вы</msg>
+      <msg name="current_lector">Сейчас готовит тему:</msg>
+      <msg name="placeholder_current_lector">Никто</msg>
+      <msg name="date">Дата</msg>
+      <msg name="hour">Время</msg>
+      <msg name="minute">Минуты</msg>
+    </messages>
+    <messages name="mgrerror_exists">
+      <msg name="vote">Тема</msg>
+    </messages>
+    <messages name="mgrerror_vote">
+      <msg name="msg_error_vote">Что-то пошло не так. __object__</msg>
+      <msg name="edit_not_author">Пытаешься редактировать чужую тему? Попроси автора внести изменения, если тебе что-то не нравится. Или обратись к админам (__admins__)</msg>
+      <msg name="delete_not_author">Пытаешься удалить чужую тему? Попроси автора удалить тему, если тебе что-то не нравится. Или обратись к админам (__admins__)</msg>
+    </messages>
+  </lang>
+</mgrdata>

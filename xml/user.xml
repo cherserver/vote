@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<mgrdata>
+  <metadata name="user" type="list" key="name">
+    <toolbar>
+      <toolbtn name="new" func="user.edit" type="new" img="t-new"/>
+      <toolbtn name="edit" func="user.edit" type="edit" img="t-edit" default="yes"/>
+      <toolbtn name="delete" func="user.delete" type="group" img="t-delete"/>
+      <toolsep/>
+      <toolbtn name="resume" func="user.resume" type="group" img="t-on"/>
+      <toolbtn name="suspend" func="user.suspend" type="group" img="t-off"/>
+      <toolsep/>
+      <toolbtn name="su" func="su" type="editlist" img="t-go">
+        <hide name="active" value="off"/>
+      </toolbtn>
+    </toolbar>
+    <coldata>
+      <col type="data" name="name" sort="alpha" sorted="yes"/>
+      <col type="data" name="fullname" sort="alpha"/>
+      <col name="status" sort="prop">
+        <xprop name="active" value="on" img="p-on" func="user.suspend"/>
+        <xprop name="active" value="off" img="p-off" func="user.resume"/>
+        <xprop name="is_admin" value="off" img="p-user"/>
+        <xprop name="is_admin" value="on" img="p-admin"/>
+      </col>
+    </coldata>
+  </metadata>
+  <metadata name="user.edit" type="form">
+    <form>
+      <field name="name">
+        <input type="text" name="name" required="yes" check="username"/>
+      </field>
+      <field name="fullname">
+        <input type="text" name="fullname" required="yes"/>
+      </field>
+      <field name="is_admin">
+        <input type="checkbox" name="is_admin"/>
+      </field>
+      <field name="passwd">
+        <input type="password"  checkpasswd="confirm" name="passwd"/>
+      </field>
+      <field name="confirm">
+        <input type="password" name="confirm"/>
+      </field>
+    </form>
+  </metadata>
+  <lang name="ru">
+    <messages name="user">
+      <msg name="title">Пользователи</msg>
+      <msg name="name">Имя</msg>
+      <msg name="fullname">Полное имя</msg>
+      <msg name="status">Статус</msg>
+      <msg name="hint_p_active_on">Включен</msg>
+      <msg name="hint_p_active_off">Выключен</msg>
+      <msg name="hint_p_is_admin_off">Пользователь</msg>
+      <msg name="hint_p_is_admin_on">Администратор</msg>
+      <msg name="msg_confirm_delete">Вы действительно желаете удалить пользователей:</msg>
+      <msg name="msg_confirm_suspend">Вы действительно желаете выключить пользователей:</msg>
+      <msg name="msg_confirm_resume">Вы действительно желаете включить пользователей:</msg>
+    </messages>
+    <messages name="user.edit">
+      <msg name="title">Редактирование пользователя</msg>
+      <msg name="title_new">Создание нового пользователя</msg>
+      <msg name="is_admin">Администратор</msg>
+      <msg name="passwd">Пароль</msg>
+      <msg name="confirm">Подтверждение</msg>
+      <include name="user"/>
+    </messages>
+    <messages name="mgrerror_exists">
+      <msg name="user">Пользователь</msg>
+    </messages>
+  </lang>
+</mgrdata>
+
